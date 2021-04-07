@@ -11,18 +11,19 @@ export class PlayListApp extends Component {
     state = {
         videos: null,
         videoId:null,
-        songName:null
+        songName:null,
+        keyWord:null
     }
     componentDidMount() {
         this.loadVideos()
     }
-    async loadVideos() {
-        const videos = await youtubeService.loadVideos()
+    async loadVideos(keyWord = null) {
+        const videos = await youtubeService.loadVideos(keyWord)
         this.setState({ videos })
     }
-    onChangeFilter = (filterBy) => {
-        console.log(filterBy);
-        // this.setState({ filterBy }, () => this.loadContacts())
+    onChangeFilter = ({keyWord}) => {
+        console.log(keyWord,'at onchangefilter');
+        this.setState({ keyWord }, () => this.loadVideos(keyWord))
     }
     onSelectVideo = (videoId,songName) =>{
         console.log('songName',songName,videoId,'VIDEO ID');
