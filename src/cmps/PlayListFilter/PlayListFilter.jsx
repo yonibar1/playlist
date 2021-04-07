@@ -5,23 +5,27 @@ import './PlayListFilter.scss'
 
 export class PlayListFilter extends Component {
     state = {
-        filter: ''
+        keyWord: ''
     }
     handleChange = ({ target }) => {
-        console.log(target);
         const field = target.name
         const value = target.type === 'number' ? +target.value : target.value
-        this.setState({ [field]: value }, () => {
-            this.props.onChangeFilter({ ...this.state })
-        })
+        this.setState({ [field]: value })
+    }
+    onSearch = (ev)=>{
+        ev.preventDefault()
+        this.props.onChangeFilter({ ...this.state })    
     }
 
     render() {
-        const { filter } = this.state
+        const { keyWord } = this.state
         return (
             <div>
+                <form onSubmit={(ev)=>this.onSearch(ev)}>
                 <label htmlFor="input">Search</label>
-                <input placeholder="Search..." type="text" value={filter} onChange={this.handleChange} name="filter" id="input" />
+                <input required placeholder="Search..." type="text" value={keyWord} onChange={this.handleChange} name="keyWord" id="input" />
+                <button>Search</button>
+                </form>
             </div>
         )
     }
