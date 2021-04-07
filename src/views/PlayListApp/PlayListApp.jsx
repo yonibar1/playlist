@@ -8,14 +8,14 @@ import { youtubeService } from '../../services/youtube.service';
 export class PlayListApp extends Component {
   state = {
     videos: null,
-    videoId: null,
-    songName: null,
+    videoId: 'Y0KxZz5k-RE',
+    songName: 'שלמה ארצי - תתארו לכם (קליפ)',
     keyWord: null,
   };
   componentDidMount() {
     this.loadVideos();
   }
-  async loadVideos(keyWord = null) {
+  async loadVideos(keyWord = 'shlomo artzi') {
     const videos = await youtubeService.loadVideos(keyWord);
     this.setState({ videos });
   }
@@ -31,12 +31,14 @@ export class PlayListApp extends Component {
   render() {
     const { videos } = this.state;
     return (
-      <div>
+      <div className="play-list-app">
         <PlayListFilter onChangeFilter={this.onChangeFilter} />
+        <div className="main-container">
         <PlayListList onSelectVideo={this.onSelectVideo} videos={videos} />
         {this.state.videoId && this.state.songName && (
-          <PlayListPlayer id={this.state.videoId} songName={this.state.songName} />
-        )}
+            <PlayListPlayer id={this.state.videoId} songName={this.state.songName} />
+            )}
+            </div>
       </div>
     );
   }

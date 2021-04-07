@@ -2,10 +2,17 @@
 border:1px solid black;
 display: flex;
 align-items: center;
+img{
+    align-self: flex-start;
+}
 .video-details{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    width: 350px;
+    &>*{
+        text-overflow: hidden;
+    }
 }
 }
