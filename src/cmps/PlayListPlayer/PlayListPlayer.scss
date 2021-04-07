@@ -1,1 +1,16 @@
-.playListPlayer {}
+.play-list-player {
+  width: 100%;
+  height: 100%;
+
+  .youtube-container {
+    width: 100%;
+    height: 100%;
+
+
+    iframe {
+      width: 550px;
+      height: 400px;
+
+    }
+  }
+}

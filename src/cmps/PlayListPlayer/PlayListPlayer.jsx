@@ -4,11 +4,12 @@ import './PlayListPlayer.scss';
 
 export class PlayListPlayer extends Component {
   render() {
+    console.log('this.props.videoId:', this.props);
     return (
-      <div>
-        <video width="750" height="500" controls>
-          <source src={`https://www.youtube.com/watch?v=${this.props.videoId}`} type="video/mp4" />
-        </video>
+      <div className="play-list-player">
+        <div className="youtube-container">
+          <iframe src={`https://www.youtube.com/embed/${this.props.id}?controls=1`}></iframe>
+        </div>
         <h4>{this.props.songName}</h4>
       </div>
     );

@@ -8,6 +8,8 @@ import { youtubeService } from '../../services/youtube.service';
 export class PlayListApp extends Component {
   state = {
     videos: null,
+    videoId: null,
+    songName: null,
   };
   componentDidMount() {
     this.loadVideos();
@@ -20,13 +22,17 @@ export class PlayListApp extends Component {
     console.log(filterBy);
     // this.setState({ filterBy }, () => this.loadContacts())
   };
+  onSelectVideo = (videoId, songName) => {
+    console.log('songName', songName, videoId, 'VIDEO ID');
+    this.setState({ videoId, songName });
+  };
 
   render() {
     const { videos } = this.state;
     return (
       <div>
         <PlayListFilter onChangeFilter={this.onChangeFilter} />
-        <PlayListList videos={videos} />
+        <PlayListList onSelectVideo={this.onSelectVideo} videos={videos} />
         {this.state.videoId && this.state.songName && (
           <PlayListPlayer id={this.state.videoId} songName={this.state.songName} />
         )}
