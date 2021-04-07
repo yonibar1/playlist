@@ -20,7 +20,7 @@ export class PlayListFilter extends Component {
     render() {
         const { keyWord } = this.state
         return (
-            <div>
+            <div className="play-list-filter">
                 <form onSubmit={(ev)=>this.onSearch(ev)}>
                 <label htmlFor="input">Search</label>
                 <input required placeholder="Search..." type="text" value={keyWord} onChange={this.handleChange} name="keyWord" id="input" />
